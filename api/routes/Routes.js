@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const userController = require('../controllers/singupController');
+const userController = require('../controllers/singupControllers');
 
-const User = require('../models/singupModel');
+const User = require('../models/singupModels');
 
 const { body } = require('express-validator/check');
 

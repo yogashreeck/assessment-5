@@ -1,10 +1,10 @@
 const { validationResult } = require('express-validator/check');
 
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
-const User = require('../models/singupModel');
+const User = require('../models/singupModels');
 
 exports.singup = (req, res, next) => {
 
