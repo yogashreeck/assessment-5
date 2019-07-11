@@ -1,31 +1,12 @@
-const express = require('express');
+import { userSignup, userLogin, getAllUsers } from '../controllers/singupControllers';
 
-const router = express.Router();
+const routes = (app) => {
+  app.route('/signup')
+  .post(userSignup)
 
-const userController = require('../controllers/singupControllers');
+  app.route('/login')
+  .post(userLogin)  
+ 
+}
 
-const User = require('../models/singupModels');
-
-const { body } = require('express-validator/check');
-
-
-router.post('/signup',[
-    body('firstname').trim().not().isEmpty(),
-    body('lastname').trim().not().isEmpty(),
-    body('email').isEmail().withMessage('please enter valid email')
-    .custom((value,{ req })=>{
-        return User.findOne({email:value})
-        .then(userDoc =>{
-            if(userDoc){
-            return Promise.reject('email is already exist')
-        }
-    })
-    }).normalizeEmail(),
-    body('password').trim().isLength({min:5}),
-    body('confirmPassword').trim().not().isEmpty(),
-    
-],userController.singup);
-
-router.post('/login',userController.login);
-
-module.exports = router;
+export default routes;
